@@ -1,0 +1,40 @@
+[gd_scene load_steps=5 format=3 uid="uid://tq855t2jueig"]
+
+[ext_resource type="Texture2D" uid="uid://cjhvgdbqw0o4o" path="res://icon.svg" id="1_m41u0"]
+[ext_resource type="Script" path="res://player/bullet.gd" id="2_hdqrj"]
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_fmeyq"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("1_m41u0")
+}],
+"loop": true,
+"name": &"shot",
+"speed": 5.0
+}]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_631t0"]
+radius = 65.192
+
+[node name="bullet" type="AnimatedSprite2D"]
+scale = Vector2(0.09, 0.09)
+sprite_frames = SubResource("SpriteFrames_fmeyq")
+animation = &"shot"
+script = ExtResource("2_hdqrj")
+
+[node name="Timer" type="Timer" parent="."]
+wait_time = 5.0
+one_shot = true
+autostart = true
+
+[node name="HitBox" type="Area2D" parent="."]
+collision_layer = 2
+collision_mask = 5
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="HitBox"]
+shape = SubResource("CircleShape2D_631t0")
+
+[connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]
+[connection signal="area_entered" from="HitBox" to="." method="_on_hit_box_area_entered"]
+[connection signal="body_entered" from="HitBox" to="." method="_on_hit_box_body_entered"]

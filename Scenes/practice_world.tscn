@@ -1,0 +1,26 @@
+[gd_scene load_steps=5 format=3 uid="uid://dud87r04liua4"]
+
+[ext_resource type="Texture2D" uid="uid://1q465iy0p3m0" path="res://Assets/tierra.png" id="2_bmwqo"]
+[ext_resource type="PackedScene" uid="uid://c5pndrs1m6s4l" path="res://Scenes/player.tscn" id="2_tpqx1"]
+
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_uwjbv"]
+texture = ExtResource("2_bmwqo")
+0:0/0 = 0
+0:0/0/physics_layer_0/linear_velocity = Vector2(0, 0)
+0:0/0/physics_layer_0/angular_velocity = 0.0
+0:0/0/physics_layer_0/polygon_0/points = PackedVector2Array(-8, -8, 8, -8, 8, 8, -8, 8)
+
+[sub_resource type="TileSet" id="TileSet_w02ca"]
+physics_layer_0/collision_layer = 1
+sources/0 = SubResource("TileSetAtlasSource_uwjbv")
+
+[node name="Test LV" type="Node2D"]
+
+[node name="Player" parent="." instance=ExtResource("2_tpqx1")]
+position = Vector2(180, 95)
+scale = Vector2(0.5, 0.5)
+
+[node name="TileMap" type="TileMap" parent="."]
+tile_set = SubResource("TileSet_w02ca")
+format = 2
+layer_0/tile_data = PackedInt32Array(1245184, 0, 0, 1245185, 0, 0, 1245186, 0, 0, 1245187, 0, 0, 1245188, 0, 0, 1245189, 0, 0, 1245190, 0, 0, 1245191, 0, 0, 1245192, 0, 0, 1245193, 0, 0, 1245194, 0, 0, 1245195, 0, 0, 1245196, 0, 0, 1245197, 0, 0, 1245198, 0, 0, 1245199, 0, 0, 1245200, 0, 0, 1245201, 0, 0, 1245202, 0, 0, 1245203, 0, 0, 1245204, 0, 0, 1245205, 0, 0, 1245206, 0, 0, 1245207, 0, 0, 1245208, 0, 0, 1245209, 0, 0, 1245210, 0, 0, 1245211, 0, 0, 1245212, 0, 0, 1245213, 0, 0, 1245214, 0, 0, 1245215, 0, 0, 1245216, 0, 0, 1245217, 0, 0, 1245218, 0, 0, 1245219, 0, 0, 1245220, 0, 0, 1245221, 0, 0, 1245222, 0, 0, 1245223, 0, 0, 1245224, 0, 0)

@@ -1,0 +1,27 @@
+[gd_scene load_steps=4 format=3 uid="uid://bidic3nggu1f7"]
+
+[ext_resource type="Texture2D" uid="uid://cwu502bmb7bm5" path="res://Assets/Textures-16.png" id="1_bq0fk"]
+[ext_resource type="Script" path="res://EnemyDeathEffect.gd" id="2_fu4tm"]
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_y3g6q"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("1_bq0fk")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]
+
+[node name="EnemyDeathEffect" type="AnimatedSprite2D"]
+sprite_frames = SubResource("SpriteFrames_y3g6q")
+autoplay = "default"
+frame_progress = 0.345405
+script = ExtResource("2_fu4tm")
+
+[node name="Timer" type="Timer" parent="."]
+one_shot = true
+autostart = true
+
+[connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]

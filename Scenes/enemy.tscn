@@ -1,0 +1,78 @@
+[gd_scene load_steps=11 format=3 uid="uid://bupwcj3w8x1qn"]
+
+[ext_resource type="Script" path="res://Enemy.gd" id="1_eba05"]
+[ext_resource type="Texture2D" uid="uid://cgbbo6eksrhcq" path="res://Assets/player_0001.png" id="2_ccaq4"]
+[ext_resource type="Texture2D" uid="uid://cf266r0rac2fy" path="res://Assets/player_0002.png" id="3_q52kx"]
+[ext_resource type="Texture2D" uid="uid://xel51towurtx" path="res://Assets/player_0003.png" id="4_uu8sc"]
+[ext_resource type="Texture2D" uid="uid://btt86rtp7tcri" path="res://Assets/player_0004.png" id="5_6v181"]
+[ext_resource type="Texture2D" uid="uid://dvhfp1kyka6gt" path="res://Assets/player_0005.png" id="6_57dq0"]
+[ext_resource type="Texture2D" uid="uid://dj2j38c04ne5y" path="res://Assets/player_0006.png" id="7_6g8al"]
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_n118d"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("2_ccaq4")
+}],
+"loop": true,
+"name": &"idle",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("2_ccaq4")
+}, {
+"duration": 1.0,
+"texture": ExtResource("3_q52kx")
+}, {
+"duration": 1.0,
+"texture": ExtResource("4_uu8sc")
+}, {
+"duration": 1.0,
+"texture": ExtResource("5_6v181")
+}, {
+"duration": 1.0,
+"texture": ExtResource("6_57dq0")
+}, {
+"duration": 1.0,
+"texture": ExtResource("7_6g8al")
+}],
+"loop": true,
+"name": &"walk",
+"speed": 15.0
+}]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_dbrak"]
+size = Vector2(15, 16)
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_5npp0"]
+radius = 9.0
+
+[node name="Enemy" type="CharacterBody2D"]
+script = ExtResource("1_eba05")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+sprite_frames = SubResource("SpriteFrames_n118d")
+animation = &"walk"
+frame = 3
+frame_progress = 0.000498752
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(-0.5, 0)
+shape = SubResource("RectangleShape2D_dbrak")
+debug_color = Color(0.600266, 0.512909, 0.497942, 0.42)
+
+[node name="Timer" type="Timer" parent="."]
+wait_time = 3.0
+autostart = true
+
+[node name="Hurtbox" type="Area2D" parent="."]
+collision_layer = 4
+collision_mask = 2
+
+[node name="Hitbox" type="CollisionShape2D" parent="Hurtbox"]
+position = Vector2(-1, -1)
+shape = SubResource("CircleShape2D_5npp0")
+
+[connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]
+[connection signal="area_entered" from="Hurtbox" to="." method="_on_hurtbox_area_entered"]
