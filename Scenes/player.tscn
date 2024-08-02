@@ -1,7 +1,9 @@
-[gd_scene load_steps=8 format=3 uid="uid://c5pndrs1m6s4l"]
+[gd_scene load_steps=19 format=3 uid="uid://c5pndrs1m6s4l"]
 
 [ext_resource type="Script" path="res://Player.gd" id="1_25e6c"]
 [ext_resource type="Texture2D" uid="uid://dgauf0opcbpff" path="res://Assets/Character-v1-run-no-hands.png" id="2_pmaj2"]
+[ext_resource type="Texture2D" uid="uid://bkqlc4epdy8ax" path="res://Assets/Character-v1-bag-touch-no-legs.png" id="3_cj2f0"]
+[ext_resource type="Texture2D" uid="uid://cgbbo6eksrhcq" path="res://Assets/player_0001.png" id="3_v3shf"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_csxei"]
 size = Vector2(86, 125)
@@ -17,6 +19,42 @@ region = Rect2(0, 128, 128, 128)
 [sub_resource type="AtlasTexture" id="AtlasTexture_2fopk"]
 atlas = ExtResource("2_pmaj2")
 region = Rect2(0, 256, 128, 128)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_pasko"]
+atlas = ExtResource("3_v3shf")
+region = Rect2(0, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ttg42"]
+atlas = ExtResource("3_cj2f0")
+region = Rect2(0, 0, 128, 128)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_j262m"]
+atlas = ExtResource("3_cj2f0")
+region = Rect2(128, 0, 128, 128)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_6ykwk"]
+atlas = ExtResource("3_cj2f0")
+region = Rect2(256, 0, 128, 128)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_wvpl5"]
+atlas = ExtResource("3_cj2f0")
+region = Rect2(0, 128, 128, 128)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_wnkw7"]
+atlas = ExtResource("3_cj2f0")
+region = Rect2(128, 128, 128, 128)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_wyvyv"]
+atlas = ExtResource("3_cj2f0")
+region = Rect2(256, 128, 128, 128)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_3c38m"]
+atlas = ExtResource("3_cj2f0")
+region = Rect2(0, 256, 128, 128)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_p8te0"]
+atlas = ExtResource("3_cj2f0")
+region = Rect2(128, 256, 128, 128)
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_poyvr"]
 animations = [{
@@ -42,12 +80,44 @@ animations = [{
 }],
 "loop": true,
 "name": &"run",
-"speed": 10.0
+"speed": 15.0
 }, {
-"frames": [],
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_pasko")
+}],
+"loop": true,
+"name": &"run_shoot",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ttg42")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_j262m")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_6ykwk")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_wvpl5")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_wnkw7")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_wyvyv")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_3c38m")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_p8te0")
+}],
 "loop": true,
 "name": &"shot",
-"speed": 5.0
+"speed": 15.0
 }]
 
 [node name="Player" type="CharacterBody2D"]
@@ -62,9 +132,7 @@ texture_filter = 1
 position = Vector2(3, -48)
 scale = Vector2(2, 2)
 sprite_frames = SubResource("SpriteFrames_poyvr")
-animation = &"run"
-frame = 2
-frame_progress = 0.257909
+animation = &"shot"
 
 [node name="Muzzle" type="Marker2D" parent="."]
 position = Vector2(65, -36)

@@ -97,9 +97,9 @@ func player_animations():
 	elif current_state == State.Run and animated_sprite_2d.animation != "run_shoot":
 		animated_sprite_2d.play("run")
 	elif current_state == State.Jump:
-		animated_sprite_2d.run("jump")
+		animated_sprite_2d.play("jump")
 	elif current_state == State.Shot:
-		animated_sprite_2d.run("shot")
+		animated_sprite_2d.play("shot")
 
 
 func input_movement():
